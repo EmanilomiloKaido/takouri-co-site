@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  background: var(--background, #f9fafb); /* light gray fallback */
+  color: var(--foreground, #111827);      /* dark text fallback */
+  font-family: Arial, Helvetica, sans-serif;
+}
+

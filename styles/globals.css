@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-
-body {
-  background: var(--background, #f9fafb); /* light gray fallback */
-  color: var(--foreground, #111827);      /* dark text fallback */
-  font-family: Arial, Helvetica, sans-serif;
+/* Optional global variables if needed for future custom CSS */
+:root {
+  --color-bg: #0B1F3F;
+  --color-accent: #D4AF37;
+  --color-text: #FFFFFF;
+  --color-secondary: #B0B0B0;
+  --color-slate: #2C2C2C;
 }
-

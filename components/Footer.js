@@ -19,12 +19,12 @@ export default function Footer({ showTopLine = true }) {
         <div className="flex space-x-6 text-lg">
           {/* Facebook */}
           <a
-            href="https://www.facebook.com/takouri.co" // ✅ use your real username
+            href="https://www.facebook.com/takouri.co"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gold transition-colors"
+            className="transition-transform hover:scale-110"
           >
-            <FaFacebookF />
+            <FaFacebookF className="text-[#1877F2]" /> {/* Facebook Blue */}
           </a>
 
           {/* Instagram */}
@@ -32,9 +32,9 @@ export default function Footer({ showTopLine = true }) {
             href="https://www.instagram.com/takouri.co"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gold transition-colors"
+            className="transition-transform hover:scale-110"
           >
-            <FaInstagram />
+            <FaInstagram className="text-[#E4405F]" /> {/* Instagram Pink/Red */}
           </a>
 
           {/* Twitter / X */}
@@ -42,18 +42,18 @@ export default function Footer({ showTopLine = true }) {
             href="https://x.com/takouri_co"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gold transition-colors"
+            className="transition-transform hover:scale-110"
           >
-            <FaTwitter />
+            <FaTwitter className="text-[#1DA1F2]" /> {/* Twitter Blue */}
           </a>
 
-          {/* LinkedIn (placeholder for now) */}
+          {/* LinkedIn */}
           <a
             href="#"
-            className="text-gray-500 cursor-not-allowed"
+            className="cursor-not-allowed"
             aria-disabled="true"
           >
-            <FaLinkedinIn />
+            <FaLinkedinIn className="text-[#0A66C2]" /> {/* LinkedIn Blue */}
           </a>
         </div>
       </div>

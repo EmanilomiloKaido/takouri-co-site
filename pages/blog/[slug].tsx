@@ -1,44 +1,49 @@
 // pages/blog/[slug].tsx
-import { useRouter } from "next/router";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { blogPosts } from "../../data/blogPosts";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-export default function BlogPost() {
-  const router = useRouter();
-  const { slug } = router.query;
+type Props = {
+  post: typeof blogPosts[0];
+};
 
-  if (!slug) return null;
-
-  const post = blogPosts.find((p) => p.link === `/blog/${slug}`);
-
+export default function BlogPost({ post }: Props) {
+  // If fallback mode or no post, you can handle here (optional)
   if (!post) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-white text-gray-900 px-6">
         <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
         <p className="mb-6">The blog post you are looking for does not exist.</p>
-        <Link href="/blog" className="text-indigo-600 font-semibold hover:underline">
-          Back to Blog
+        <Link href="/blog">
+          <a className="text-indigo-600 font-semibold hover:underline">
+            Back to Blog
+          </a>
         </Link>
       </div>
     );
   }
 
+  // split lines of content
+  const lines = post.content.split("\n").filter((ln) => ln.trim().length > 0);
+
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      {/* Hero Section */}
+      {/* Hero / Title Banner */}
       <motion.section
-        initial={{ opacity: 0, y: -30 }}
+        initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="relative w-full h-[50vh] flex flex-col justify-center items-center text-center bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white px-6"
       >
         <h1 className="text-4xl md:text-5xl font-bold mb-4">{post.title}</h1>
-        <span className="text-sm md:text-base text-gray-300">{post.category}</span>
+        <span className="text-sm md:text-base text-gray-300">
+          {post.category}
+        </span>
       </motion.section>
 
-      {/* Featured Image with hover scale */}
+      {/* Featured Image */}
       <motion.section
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -56,36 +61,51 @@ export default function BlogPost() {
         </motion.div>
       </motion.section>
 
-      {/* Full Content with scroll reveal */}
+      {/* Content */}
       <section className="max-w-4xl mx-auto px-6 pb-16 prose text-gray-700">
-        {post.content.split("\n").map((line, index) =>
-          line.trim() ? (
-            <motion.p
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              {line}
-            </motion.p>
-          ) : (
-            <br key={index} />
-          )
-        )}
-        {/* Example inline link animation */}
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          className="mt-6 text-center"
-        >
-          <Link
-            href="/blog"
-            className="text-indigo-600 font-semibold hover:underline"
+        {lines.map((line, idx) => (
+          <motion.p
+            key={idx}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: idx * 0.1 }}
           >
-            ← Back to Blog
+            {line}
+          </motion.p>
+        ))}
+
+        <motion.div whileHover={{ scale: 1.02 }} className="mt-10 text-center">
+          <Link href="/blog">
+            <a className="text-indigo-600 font-semibold hover:underline">
+              ← Back to Blog
+            </a>
           </Link>
         </motion.div>
       </section>
     </div>
   );
 }
+
+// Pre-generate all blog paths
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = blogPosts.map((p) => ({
+    params: { slug: p.slug },
+  }));
+  return {
+    paths,
+    fallback: false, // or true / "blocking" if you want dynamic addition
+  };
+};
+
+// Provide post data as props
+export const getStaticProps: GetStaticProps = async (context) => {
+  const slug = context.params?.slug;
+  const post = blogPosts.find((p) => p.slug === slug);
+  if (!post) {
+    return { notFound: true };
+  }
+  return {
+    props: { post },
+  };
+};

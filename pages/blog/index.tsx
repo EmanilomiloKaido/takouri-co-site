@@ -1,10 +1,11 @@
 // pages/blog/index.tsx
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { blogPosts } from "../../data/blogPosts";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import BlogCard from "../../components/BlogCard";
 import { motion } from "framer-motion";
 
 export default function Blog() {
@@ -33,57 +34,60 @@ export default function Blog() {
     <div className="min-h-screen bg-white text-gray-900">
       <Navbar />
 
-      {/* Hero */}
-      <section className="relative w-full h-[60vh] flex flex-col justify-center items-center text-center bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white px-6">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          Insights for Founders Who Value Time Above All
-        </h1>
-        <p className="max-w-2xl text-lg md:text-xl opacity-80">
-          We share efficiency hacks, real case studies, and timeless principles so you can focus on building your legacy.
-        </p>
-        <button
-          onClick={() =>
-            document.getElementById("blog-grid")?.scrollIntoView({
-              behavior: "smooth",
-            })
-          }
-          className="mt-6 px-6 py-3 bg-white text-gray-900 rounded-full shadow-lg hover:bg-gray-200 transition"
+      {/* Hero Section */}
+      <section className="relative bg-midnight text-white min-h-[60vh] flex flex-col justify-end items-center text-center px-6 pt-24 pb-16 overflow-hidden">
+        <motion.h1
+          className="text-5xl md:text-6xl font-extrabold mb-4 z-10"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
         >
-          Explore Insights
-        </button>
+          Insights & Stories
+        </motion.h1>
+        <p className="text-lg md:text-xl text-white/80 max-w-2xl z-10">
+          Thought leadership, case studies, and legacy-building wisdom from Takouri Co. and Emanilomilo visionaries.
+        </p>
+        <div className="absolute inset-0">
+          <Image
+            src="/images/blog-hero.jpg" // replace with your hero image
+            alt="Blog Hero"
+            fill
+            className="object-cover opacity-30"
+          />
+        </div>
       </section>
 
       {/* Featured Post */}
-      <section className="max-w-6xl mx-auto px-6 py-16">
+      <section className="max-w-6xl mx-auto px-6 mt-12">
         <motion.div
-          className="relative rounded-2xl overflow-hidden shadow-lg group"
+          className="grid md:grid-cols-2 gap-8"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
         >
-          <Image
-            src={featured.image}
-            alt={featured.title}
-            width={1200}
-            height={400}
-            className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-          <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-center text-white p-6">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {featured.title}
-            </h2>
-            <p className="max-w-2xl mb-6">{featured.excerpt}</p>
-            <Link href={`/blog/${featured.slug}`}>
-              <a className="px-6 py-3 bg-white text-gray-900 rounded-full shadow hover:bg-gray-200 transition">
-                Read More →
-              </a>
-            </Link>
-          </div>
+          <article className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition">
+            <div className="relative w-full h-72 md:h-full">
+              <Image
+                src={featured.image}
+                alt={featured.title}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="p-6 bg-white">
+              <span className="text-xs px-2 py-1 bg-gray-100 rounded-full">{featured.category}</span>
+              <h2 className="mt-3 text-2xl font-bold">{featured.title}</h2>
+              <p className="mt-2 text-gray-600 line-clamp-4">{featured.excerpt}</p>
+              <Link href={`/blog/${featured.slug}`} className="mt-4 inline-block text-emerald-600 font-semibold">
+                Read → 
+              </Link>
+            </div>
+          </article>
         </motion.div>
       </section>
 
-      {/* Category Tabs + Search Input */}
-      <section className="max-w-6xl mx-auto px-6 mb-8">
+      {/* Category Tabs + Search */}
+      <section className="max-w-6xl mx-auto px-6 mt-12 mb-8">
         <div className="flex flex-wrap items-center gap-4 mb-4">
           {categories.map((cat) => (
             <button
@@ -111,48 +115,44 @@ export default function Blog() {
       </section>
 
       {/* Blog Grid */}
-      <section
-        id="blog-grid"
-        className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8 pb-16"
-      >
-        {filtered.map((post, idx) => (
-          <motion.div
-            key={post.slug}
-            className="rounded-xl overflow-hidden shadow hover:shadow-xl transition group"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: idx * 0.1 }}
-          >
-            <Image
-              src={post.image}
-              alt={post.title}
-              width={600}
-              height={400}
-              className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-            <div className="p-6">
-              <span className="text-sm text-gray-500">{post.category}</span>
-              <h3 className="text-xl font-semibold mt-2">{post.title}</h3>
-              <p className="text-gray-600 mt-2">{post.excerpt}</p>
-              <Link href={`/blog/${post.slug}`}>
-                <a className="mt-4 inline-block text-indigo-600 font-semibold hover:underline">
-                  Read More →
-                </a>
-              </Link>
-            </div>
-          </motion.div>
-        ))}
+      <section className="max-w-6xl mx-auto px-6 mt-8">
+        <motion.div
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.1 } },
+          }}
+        >
+          {filtered.map((post) => (
+            <motion.div
+              key={post.id}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+            >
+              <BlogCard post={post} />
+            </motion.div>
+          ))}
+        </motion.div>
       </section>
 
-      {/* Legacy Note or mid-section quote */}
-      <section className="bg-gray-100 py-16 text-center">
-        <p className="text-xl md:text-2xl max-w-2xl mx-auto italic">
-          “At Takouri Co., efficiency isn’t just about speed. It’s about creating the time to build something timeless.”
+      {/* CTA Section */}
+      <section className="bg-midnight text-white mt-16 py-16 px-6 text-center rounded-2xl mx-6 md:mx-auto max-w-4xl shadow-lg">
+        <h3 className="text-3xl font-bold mb-4 text-gold">Inspired to Build Your Legacy?</h3>
+        <p className="mb-6 text-white/80 max-w-xl mx-auto">
+          Let’s craft something legendary together. Our team at Takouri Co. and Emanilomilo visionaries will help elevate your brand and impact.
         </p>
+        <Link href="/contact">
+          <button className="px-8 py-3 bg-gold text-midnight font-semibold rounded-xl hover:scale-105 transition-all shadow-sm">
+            Get Started
+          </button>
+        </Link>
       </section>
 
-      <Footer />
+      <Footer showTopLine={true} />
     </div>
   );
 }

@@ -1,50 +1,30 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function BlogCard({ post }) {
   return (
-    <article className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition">
-      {/* Blog Image */}
+    <div className="border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
       <div className="relative w-full h-48">
         <Image
           src={post.image}
           alt={post.title}
           fill
           className="object-cover"
-          sizes="(max-width: 768px) 100vw, 33vw"
-          priority={false} // set true for featured posts if needed
         />
       </div>
-
-      {/* Blog Info */}
       <div className="p-4">
-        <div className="flex items-center justify-between">
-          <span className="text-xs px-2 py-1 bg-gray-100 rounded-full">
-            {post.category}
-          </span>
-          <span className="text-xs text-gray-400">
-            {new Date().getFullYear()}
-          </span>
-        </div>
-
-        {/* Blog Title */}
-        <h3 className="mt-3 font-semibold text-lg">{post.title}</h3>
-
-        {/* Excerpt */}
-        <p className="mt-2 text-sm text-gray-600 line-clamp-3">
-          {post.excerpt}
-        </p>
-
-        {/* Read More Link */}
+        <h2 className="text-xl font-bold mb-2">{post.title}</h2>
+        <p className="text-gray-600 mb-4">{post.excerpt}</p>
+        <p className="text-sm font-medium text-gray-500 mb-4">{post.category}</p>
         <Link
           href={`/blog/${post.slug}`}
-          className="mt-4 inline-block text-emerald-600 font-semibold hover:underline"
+          className="text-blue-600 hover:underline"
         >
-          Read →
+          Read More
         </Link>
       </div>
-    </article>
+    </div>
   );
 }

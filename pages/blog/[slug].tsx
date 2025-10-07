@@ -1,4 +1,3 @@
-// pages/blog/[slug].tsx
 import { GetStaticPaths, GetStaticProps } from "next";
 import { blogPosts } from "../../data/blogPosts";
 import Image from "next/image";
@@ -10,22 +9,18 @@ type Props = {
 };
 
 export default function BlogPost({ post }: Props) {
-  // If fallback mode or no post, you can handle here (optional)
   if (!post) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-white text-gray-900 px-6">
         <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
         <p className="mb-6">The blog post you are looking for does not exist.</p>
-        <Link href="/blog">
-          <a className="text-indigo-600 font-semibold hover:underline">
-            Back to Blog
-          </a>
+        <Link href="/blog" className="text-indigo-600 font-semibold hover:underline">
+          ← Back to Blog
         </Link>
       </div>
     );
   }
 
-  // split lines of content
   const lines = post.content.split("\n").filter((ln) => ln.trim().length > 0);
 
   return (
@@ -76,10 +71,8 @@ export default function BlogPost({ post }: Props) {
         ))}
 
         <motion.div whileHover={{ scale: 1.02 }} className="mt-10 text-center">
-          <Link href="/blog">
-            <a className="text-indigo-600 font-semibold hover:underline">
-              ← Back to Blog
-            </a>
+          <Link href="/blog" className="text-indigo-600 font-semibold hover:underline">
+            ← Back to Blog
           </Link>
         </motion.div>
       </section>
@@ -92,20 +85,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = blogPosts.map((p) => ({
     params: { slug: p.slug },
   }));
-  return {
-    paths,
-    fallback: false, // or true / "blocking" if you want dynamic addition
-  };
+  return { paths, fallback: false };
 };
 
 // Provide post data as props
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context.params?.slug;
   const post = blogPosts.find((p) => p.slug === slug);
-  if (!post) {
-    return { notFound: true };
-  }
-  return {
-    props: { post },
-  };
+  if (!post) return { notFound: true };
+  return { props: { post } };
 };

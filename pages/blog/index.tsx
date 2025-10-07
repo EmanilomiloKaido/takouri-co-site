@@ -1,4 +1,3 @@
-// pages/blog/index.tsx
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -45,11 +44,11 @@ export default function Blog() {
           Insights & Stories
         </motion.h1>
         <p className="text-lg md:text-xl text-white/80 max-w-2xl z-10">
-          Thought leadership, case studies, and legacy-building wisdom from Takouri Co. and Emanilomilo visionaries.
+          Thought leadership, creative philosophy, and lessons from the journey of building greatness.
         </p>
         <div className="absolute inset-0">
           <Image
-            src="/images/blog-hero.jpg" // replace with your hero image
+            src="/images/blog-hero.jpg"
             alt="Blog Hero"
             fill
             className="object-cover opacity-30"
@@ -75,11 +74,16 @@ export default function Blog() {
               />
             </div>
             <div className="p-6 bg-white">
-              <span className="text-xs px-2 py-1 bg-gray-100 rounded-full">{featured.category}</span>
+              <span className="text-xs px-2 py-1 bg-gray-100 rounded-full">
+                {featured.category}
+              </span>
               <h2 className="mt-3 text-2xl font-bold">{featured.title}</h2>
               <p className="mt-2 text-gray-600 line-clamp-4">{featured.excerpt}</p>
-              <Link href={`/blog/${featured.slug}`} className="mt-4 inline-block text-emerald-600 font-semibold">
-                Read → 
+              <Link
+                href={`/blog/${featured.slug}`}
+                className="mt-4 inline-block text-emerald-600 font-semibold hover:underline"
+              >
+                Read →
               </Link>
             </div>
           </article>
@@ -115,7 +119,7 @@ export default function Blog() {
       </section>
 
       {/* Blog Grid */}
-      <section className="max-w-6xl mx-auto px-6 mt-8">
+      <section className="max-w-6xl mx-auto px-6 mt-8 mb-20">
         <motion.div
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
           initial="hidden"
@@ -137,19 +141,6 @@ export default function Blog() {
             </motion.div>
           ))}
         </motion.div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="bg-midnight text-white mt-16 py-16 px-6 text-center rounded-2xl mx-6 md:mx-auto max-w-4xl shadow-lg">
-        <h3 className="text-3xl font-bold mb-4 text-gold">Inspired to Build Your Legacy?</h3>
-        <p className="mb-6 text-white/80 max-w-xl mx-auto">
-          Let’s craft something legendary together. Our team at Takouri Co. and Emanilomilo visionaries will help elevate your brand and impact.
-        </p>
-        <Link href="/contact">
-          <button className="px-8 py-3 bg-gold text-midnight font-semibold rounded-xl hover:scale-105 transition-all shadow-sm">
-            Get Started
-          </button>
-        </Link>
       </section>
 
       <Footer showTopLine={true} />

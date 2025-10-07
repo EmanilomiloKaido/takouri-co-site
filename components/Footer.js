@@ -53,11 +53,6 @@ export default function Footer({ showTopLine = true }) {
             <FaTwitter className="text-[#1DA1F2]" />
           </a>
 
-          {/* LinkedIn (inactive) */}
-          <a href="#" className="cursor-not-allowed" aria-disabled="true">
-            <FaLinkedinIn className="text-[#0A66C2]" />
-          </a>
-
           {/* WhatsApp */}
           <a
             href="https://wa.me/27720967077"
@@ -67,6 +62,12 @@ export default function Footer({ showTopLine = true }) {
           >
             <FaWhatsapp className="text-[#25D366]" />
           </a>
+          
+          {/* LinkedIn (inactive) */}
+          <a href="#" className="cursor-not-allowed" aria-disabled="true">
+            <FaLinkedinIn className="text-[#0A66C2]" />
+          </a>
+
         </div>
       </div>
     </footer>

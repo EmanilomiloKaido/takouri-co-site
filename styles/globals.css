@@ -2,11 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Optional global variables if needed for future custom CSS */
+/* Global CSS Variables */
 :root {
-  --color-bg: #0B1F3F;
-  --color-accent: #D4AF37;
-  --color-text: #FFFFFF;
-  --color-secondary: #B0B0B0;
-  --color-slate: #2C2C2C;
+  --color-bg: #0B1F3F;       /* Midnight blue background */
+  --color-accent: #00B8D4;   /* Takouri brand blue */
+  --color-text: #FFFFFF;      /* Main text */
+  --color-secondary: #B0B0B0; /* Secondary text */
+  --color-slate: #2C2C2C;    /* Cards / subtle contrast */
+}
+
+/* Primary text using brand blue */
+.text-accent {
+  color: var(--color-accent);
+}
+
+/* Background blue accents */
+.bg-accent {
+  background-color: var(--color-accent);
+}
+
+/* Apple-style gradient for special text or social icons */
+.text-gradient-apple {
+  background: linear-gradient(45deg, #ff5f6d, #ffc371, #1fd1f9, #a18cd1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Optional: gradient buttons */
+.btn-gradient-apple {
+  background: linear-gradient(45deg, #ff5f6d, #ffc371, #1fd1f9, #a18cd1);
+  color: white;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+.btn-gradient-apple:hover {
+  opacity: 0.9;
 }

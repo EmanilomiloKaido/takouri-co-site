@@ -160,7 +160,7 @@ export default function ChatBoard() {
         onClick={() => setIsOpen(true)}
         className="fixed bottom-4 right-4 bg-takouriBlue text-white px-3 py-2 rounded-full shadow-lg text-xs hover:bg-blue-600 transition-all z-50"
       >
-        💬
+        💬 Chat with Takouri AI
       </button>
     );
 

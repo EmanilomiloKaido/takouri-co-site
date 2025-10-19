@@ -210,7 +210,7 @@ export default function Footer({ showTopLine = true }) {
         {/* Bottom bar */}
         <div className="max-w-7xl mx-auto mt-8 border-t border-gray-200 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
           <div className="flex items-center gap-4">
-            <div className="text-xs">Trusted by</div>
+            <div className="text-xs">A trusted partner of</div>
             <div className="flex gap-3 items-center">
               {["Emanilomilo Foundation"].map((txt, i) => (
                 <div

@@ -212,7 +212,7 @@ export default function Footer({ showTopLine = true }) {
           <div className="flex items-center gap-4">
             <div className="text-xs">Trusted by</div>
             <div className="flex gap-3 items-center">
-              {["Client A", "Client B", "Award 2025"].map((txt, i) => (
+              {["Emanilomilo Foundation"].map((txt, i) => (
                 <div
                   key={i}
                   className="px-3 py-1 bg-gray-100 rounded hover:bg-blue-50 transition"

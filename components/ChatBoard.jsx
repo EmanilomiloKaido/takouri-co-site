@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { FaTimes, FaUserCircle, FaSmile } from "react-icons/fa";
+import { FaTimes, FaUserCircle } from "react-icons/fa";
 
 const WHATSAPP_NUMBER = "27600000000";
 
@@ -29,6 +29,7 @@ export default function ChatBoard() {
     "Leadership 👑",
   ];
 
+  // Position chat box bottom-right by default
   useEffect(() => {
     if (typeof window !== "undefined") {
       setChatPosition({
@@ -38,7 +39,7 @@ export default function ChatBoard() {
     }
   }, []);
 
-  // ✅ Listen for openChat events
+  // Listen for FAQ "openChat" event
   useEffect(() => {
     const handleOpenChat = (e) => {
       const question = (e && e.detail) || "";
@@ -50,7 +51,7 @@ export default function ChatBoard() {
     return () => window.removeEventListener("openChat", handleOpenChat);
   }, []);
 
-  // Auto scroll
+  // Auto-scroll to latest message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -64,7 +65,7 @@ export default function ChatBoard() {
     }
   }, [queue, loading]);
 
-  // Drag logic
+  // --- Dragging logic ---
   const handleMouseDown = (e) => {
     if (!chatRef.current) return;
     setIsDragging(true);
@@ -98,28 +99,66 @@ export default function ChatBoard() {
     };
   }, [isDragging]);
 
+  // --- Billion-Dollar Response Logic ---
   const getResponse = (text) => {
     const lower = text.toLowerCase();
+
     if (!greeted && /hi|hello|hey/i.test(lower)) {
       setGreeted(true);
-      return "👋 Hey! What’s your vision today?";
+      return `👋 Hey visionary! Welcome to Takouri — where raw ideas become a reality.
+What’s your focus today — Startup, Marketing, Growth, Creative, Money, or Leadership?`;
     }
-    if (lower.includes("startup")) return "💡 Start small. Move fast.";
-    if (lower.includes("marketing")) return "📈 Marketing is storytelling.";
-    if (lower.includes("money")) return "💰 Money follows mastery.";
-    if (lower.includes("growth")) return "🚀 Keep improving every day.";
-    if (lower.includes("creative")) return "🎬 Your ideas paint the world.";
-    if (lower.includes("leadership")) return "👑 Lead with purpose.";
+
+    if (lower.includes("startup"))
+      return `💡 Every company started as a sketch on paper.
+Don’t wait for perfect — build small, test fast, and talk to real people.
+Document every lesson. Your early chaos is your future strategy.
+⚙️ Want me to help you design your first *3-step startup blueprint*?`;
+
+    if (lower.includes("marketing"))
+      return `📈 Marketing isn’t selling — it’s storytelling.
+Find the emotion behind your product and make people *feel* it.
+Build community first, sell second.
+Start posting insights, behind-the-scenes, or transformations that prove your brand *gets people*.
+🎯 Want me to outline a *one-page marketing plan* for your brand?`;
+
+    if (lower.includes("money"))
+      return `💰 Money follows mastery.
+Focus on becoming the most *trusted* and *consistent* in your lane.
+Track every cent, invest in tools that multiply time, not comfort.
+Make your money work while you sleep — even if it starts with R500.
+💡 Want me to show you how to turn your skill into passive income?`;
+
+    if (lower.includes("growth"))
+      return `🚀 Growth is the reward for discipline.
+Study your results weekly, not your emotions daily.
+Outgrow your habits, not just your goals.
+One percent better every day turns into legendary impact in a year.
+🧭 Want to see your *next 3 growth moves* for the next 30 days?`;
+
+    if (lower.includes("creative"))
+      return `🎬 Creativity is divine. Don’t chase trends — create tone.
+Your originality is your currency.
+Keep a *vision journal*, experiment weekly, and collaborate with dreamers who make your ideas louder.
+🎨 Want me to give you *5 creative project ideas* to grow your brand presence?`;
+
+    if (lower.includes("leadership"))
+      return `👑 Leadership is service, not status.
+Move like someone who already runs an empire, even if your team is just you right now.
+Listen twice as much as you speak. Build people, not followers.
+⚔️ Want me to share *Takouri’s 3 Laws of Legendary Leadership*?`;
+
     const replies = [
-      "⚡ Tell me more.",
-      "🌱 What drives that thought?",
-      "🔥 Keep building.",
-      "💭 That’s powerful.",
-      "💡 I like where this is going.",
+      "⚡ Interesting. Tell me more — what’s the vision behind that?",
+      "🌱 Every great idea starts small. Let’s shape it into something unstoppable.",
+      "🔥 That’s the spark! What do you think your next bold step could be?",
+      "💭 I see where your mind’s going — want help turning that into a real plan?",
+      "💡 Love that direction. Want me to break it into your next 3 action points?",
     ];
     return replies[Math.floor(Math.random() * replies.length)];
   };
 
+  // --- Send Message Logic ---
   const sendMessage = async (text) => {
     if (!text.trim()) return;
     setLoading(true);
@@ -153,7 +192,7 @@ export default function ChatBoard() {
     setInput("");
   };
 
-  // ✳️ Compact Floating Button
+  // --- Compact Floating Button ---
   if (!isOpen)
     return (
       <button
@@ -164,7 +203,7 @@ export default function ChatBoard() {
       </button>
     );
 
-  // ✳️ Compact Chat Box
+  // --- Chat Box ---
   return (
     <div
       ref={chatRef}
@@ -211,13 +250,13 @@ export default function ChatBoard() {
                 <div className="bg-takouriBlue text-white rounded-full text-[9px] w-4 h-4 flex items-center justify-center">
                   AI
                 </div>
-                <div className="bg-white px-2 py-1 rounded-xl shadow text-[11px]">
+                <div className="bg-white px-2 py-1 rounded-xl shadow text-[11px] whitespace-pre-line">
                   {msg.content || (msg.typing && "•••")}
                 </div>
               </div>
             ) : (
               <div className="flex items-end space-x-1 max-w-[75%] justify-end">
-                <div className="bg-takouriBlue text-white px-2 py-1 rounded-xl shadow text-[11px]">
+                <div className="bg-takouriBlue text-white px-2 py-1 rounded-xl shadow text-[11px] whitespace-pre-line">
                   {msg.content}
                 </div>
                 <FaUserCircle className="text-takouriBlue" size={14} />

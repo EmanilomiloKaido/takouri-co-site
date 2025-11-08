@@ -126,7 +126,7 @@ export default function Footer({ showTopLine = true }) {
                     <li key={i}>
                       <Link
                         href={link}
-                        className="underline hover:text-takouriBlue transition"
+                        className="hover:text-takouriBlue transition"
                       >
                         {item}
                       </Link>
@@ -152,7 +152,7 @@ export default function Footer({ showTopLine = true }) {
                   FAQ:{" "}
                   <Link
                     href="/faq"
-                    className="underline hover:text-takouriBlue transition"
+                    className="hover:text-takouriBlue transition"
                   >
                     View common questions
                   </Link>
@@ -171,7 +171,7 @@ export default function Footer({ showTopLine = true }) {
               <li>
                 <Link
                   href="/legal/privacy-terms"
-                  className="underline hover:text-takouriBlue transition"
+                  className="hover:text-takouriBlue transition"
                 >
                   Privacy & Terms
                 </Link>
@@ -179,7 +179,7 @@ export default function Footer({ showTopLine = true }) {
               <li>
                 <Link
                   href="/cookie"
-                  className="underline hover:text-takouriBlue transition"
+                  className="hover:text-takouriBlue transition"
                 >
                   Cookie Settings
                 </Link>
@@ -187,7 +187,7 @@ export default function Footer({ showTopLine = true }) {
               <li>
                 <Link
                   href="/legal/dmca"
-                  className="underline hover:text-takouriBlue transition"
+                  className="hover:text-takouriBlue transition"
                 >
                   DMCA
                 </Link>
@@ -195,7 +195,7 @@ export default function Footer({ showTopLine = true }) {
               <li>
                 <a
                   href="mailto:info@takouri.co.za"
-                  className="underline hover:text-takouriBlue transition"
+                  className="hover:text-takouriBlue transition"
                 >
                   info@takouri.co.za
                 </a>
@@ -279,7 +279,7 @@ export default function Footer({ showTopLine = true }) {
         </div>
       </footer>
 
-      {/* Self-contained ChatBoard (no wrapper divs) */}
+      {/* Self-contained ChatBoard */}
       {chatOpen && (
         <ChatBoard preFilledMessage={preFilledMessage} closeChat={() => setChatOpen(false)} />
       )}

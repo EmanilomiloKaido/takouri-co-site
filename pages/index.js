@@ -12,44 +12,44 @@ export default function Home() {
       desc: "Interfaces that balance elegance, clarity, and performance — admired globally.",
     },
     {
-      title: "Seamless Digital Solutions",
-      desc: "Platforms engineered for speed, responsiveness, and international standards.",
+      title: "Seamless Digital Systems",
+      desc: "Built for speed, resilience, and world-class functionality across devices.",
     },
     {
       title: "Brand Legacy Amplification",
-      desc: "Elevating your story with visuals and messaging that resonate across cultures.",
+      desc: "We don’t just design — we shape perception, elevate presence, and define legacy.",
     },
   ];
 
   const services = [
     {
       title: "Brand & Logo Design",
-      desc: "Creating timeless brand identities that capture your story and resonate globally.",
+      desc: "Transforming your ideas into timeless symbols that inspire loyalty and connection.",
       color: "bg-gold/10 text-gold",
     },
     {
       title: "Website Design & Development",
-      desc: "High-converting, responsive websites that embody elegance, performance, and clarity.",
+      desc: "Responsive, high-performing websites that convert attention into trust.",
       color: "bg-white/5 text-white",
     },
     {
       title: "Digital Marketing Strategy",
-      desc: "Tailored strategies that boost visibility, engagement, and brand authority online.",
+      desc: "Clear messaging. Targeted campaigns. Measurable growth that feels effortless.",
       color: "bg-gold/5 text-gold",
     },
     {
       title: "SEO & Local Optimization",
-      desc: "Optimized to rank higher, attract ideal customers, and dominate local searches.",
+      desc: "Get found, get chosen — rank higher, attract your ideal customers, and grow visibility.",
       color: "bg-white/5 text-white",
     },
     {
-      title: "Content Creation (Photo/Video)",
-      desc: "Visual storytelling that captivates audiences and strengthens brand presence.",
+      title: "Content Creation (Photo / Video)",
+      desc: "We craft cinematic visuals that speak emotion, not just promotion.",
       color: "bg-gold/10 text-gold",
     },
     {
       title: "Social Media Management",
-      desc: "Building strong, engaging communities while maintaining a cohesive brand voice.",
+      desc: "Building communities that follow, engage, and trust your story.",
       color: "bg-white/5 text-white",
     },
   ];
@@ -60,7 +60,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative bg-midnight text-text min-h-[60vh] flex flex-col justify-start items-center text-center px-6 pt-24 pb-4 overflow-hidden">
+      <section className="relative bg-midnight text-text min-h-[70vh] flex flex-col justify-center items-center text-center px-6 overflow-hidden">
         {/* Floating shapes */}
         <motion.div
           className="absolute w-72 h-72 bg-gold/20 rounded-full top-10 left-10 filter blur-3xl"
@@ -83,7 +83,7 @@ export default function Home() {
           Takouri Co.
         </motion.h1>
 
-        {/* Typed Subline */}
+        {/* Subline with StoryBrand Clarity */}
         <motion.div
           className="text-secondary max-w-2xl mb-8 text-lg md:text-xl relative z-10"
           initial={{ opacity: 0, y: 20 }}
@@ -92,26 +92,34 @@ export default function Home() {
         >
           <Typewriter
             words={[
-              "Crafting digital experiences that define legacy, elevate brands, and inspire a global audience."
+              "You’re the hero. We’re the guide. Together, we’ll craft a brand story the world never forgets.",
             ]}
-            loop={1}         // type once
-            cursor={false}   // hide blinking cursor
-            typeSpeed={50}   // speed per character
-            deleteSpeed={0}  // no delete
+            loop={1}
+            cursor={false}
+            typeSpeed={50}
+            deleteSpeed={0}
           />
         </motion.div>
 
-        {/* Optional gradient divider */}
+        {/* CTA */}
+        <motion.a
+          href="/services"
+          whileHover={{ scale: 1.05 }}
+          className="relative z-10 inline-block bg-gold text-midnight font-semibold py-3 px-8 rounded-full shadow-md hover:shadow-lg transition duration-300"
+        >
+          Start Your Transformation
+        </motion.a>
+
         <div className="absolute bottom-0 w-full h-12 bg-gradient-to-b from-transparent to-midnight z-0" />
       </section>
 
       {/* Features Section */}
-      <section className="bg-midnight text-text pt-4 pb-12 px-6 relative overflow-hidden">
+      <section className="bg-midnight text-text pt-16 pb-12 px-6 relative overflow-hidden">
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
           {features.map((feature, idx) => (
             <motion.div
               key={idx}
-              className={`p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow bg-white/5`}
+              className="p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow bg-white/5 backdrop-blur-sm"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -141,7 +149,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="bg-midnight text-text py-16 px-6">
+      <section className="bg-midnight text-text py-24 px-6">
         <motion.div
           className="max-w-6xl mx-auto text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -149,10 +157,11 @@ export default function Home() {
           transition={{ duration: 1 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Our Premium Services
+            Transform Vision Into Legacy
           </h2>
           <p className="text-secondary max-w-2xl mx-auto text-lg md:text-xl">
-            We craft digital experiences that elevate brands and amplify stories across every platform.
+            We help ambitious brands clarify their message, refine their presence,
+            and lead with purpose. You bring the vision — we bring the strategy.
           </p>
         </motion.div>
 
@@ -172,6 +181,21 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
+
+        {/* Closing CTA */}
+        <motion.div
+          className="text-center mt-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <a
+            href="/services"
+            className="inline-block bg-gold text-midnight font-semibold py-3 px-10 rounded-full shadow-md hover:shadow-lg transition duration-300"
+          >
+            Explore Our Services
+          </a>
+        </motion.div>
       </section>
 
       <Footer showTopLine={true} />

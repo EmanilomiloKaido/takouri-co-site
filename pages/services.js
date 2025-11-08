@@ -12,15 +12,15 @@ export default function Services() {
   const services = [
     {
       title: "Brand Identity",
-      desc: "Luxury branding systems that tell your story and command attention worldwide.",
+      desc: "We help you uncover your true essence and craft a visual language that speaks power. No trends—just timeless clarity that positions you as unforgettable.",
     },
     {
       title: "Web Experiences",
-      desc: "High-performance websites that balance elegance, speed, and global accessibility.",
+      desc: "Your website isn’t a brochure. It’s a stage. We design immersive, high-performance experiences that make every visitor feel your story.",
     },
     {
       title: "Digital Marketing",
-      desc: "Premium strategies designed to elevate brands and expand influence.",
+      desc: "You’ve got the message—let’s amplify it. We create strategies that move audiences and turn quiet brands into cultural voices.",
     },
   ];
 
@@ -36,7 +36,7 @@ export default function Services() {
           transition={{ duration: 0.8 }}
           className="text-5xl font-bold"
         >
-          Our Services
+          You’re the Hero. We’re Your Guide.
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -44,15 +44,14 @@ export default function Services() {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="mt-4 text-lg text-slate-300 max-w-2xl mx-auto"
         >
-          World-class design, strategy, and digital solutions crafted for brands
-          that lead globally.
+          At Takouri Co., we don’t just design—we train heroes to lead their industries
+          through story, design, and digital mastery.
         </motion.p>
 
-        {/* Floating Gold Accent */}
         <div className="absolute top-20 right-40 w-24 h-24 bg-gold/20 rounded-full blur-3xl animate-pulse" />
       </section>
 
-      {/* Services Grid */}
+      {/* Services */}
       <section className="bg-white py-24 px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
           {services.map((service, i) => (
@@ -62,8 +61,7 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.2 }}
               viewport={{ once: true }}
-              className="bg-slate-50 p-8 rounded-2xl shadow-lg hover:shadow-xl 
-                         transition duration-300 hover:-translate-y-2"
+              className="bg-slate-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 hover:-translate-y-2"
             >
               <h3 className="text-xl font-semibold text-midnight mb-4">
                 {service.title}
@@ -80,24 +78,26 @@ export default function Services() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-3xl font-bold mb-6"
+          className="text-3xl font-bold mb-4"
         >
-          Ready to Work With Takouri Co.?
+          Every Hero Needs a Plan.
         </motion.h2>
+        <p className="text-slate-300 mb-8">
+          Let’s clarify your story, craft your visuals, and build your digital
+          presence—so your brand moves people and builds legacy.
+        </p>
         <Button onClick={() => setShowForm(true)}>Get Started</Button>
       </section>
 
       {/* Modal */}
       {showForm && (
         <motion.div className="fixed inset-0 z-50 flex items-center justify-center">
-          {/* Backdrop */}
           <motion.div
             className="absolute inset-0 bg-black/60"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={() => setShowForm(false)}
           />
-          {/* Form Panel */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}

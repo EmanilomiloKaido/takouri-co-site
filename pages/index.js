@@ -57,6 +57,7 @@ export default function Home() {
 
   return (
     <>
+      {/* Navbar */}
       <Navbar />
 
       {/* Hero Section */}
@@ -98,6 +99,7 @@ export default function Home() {
           />
         </motion.div>
 
+        {/* Internal link using Next.js Link */}
         <Link
           href="/services"
           className="relative z-10 inline-block bg-gold text-midnight font-semibold py-3 px-8 rounded-full shadow-md hover:shadow-lg transition duration-300"
@@ -113,8 +115,7 @@ export default function Home() {
         <motion.div
           className="max-w-4xl mx-auto text-center space-y-6"
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
           <h2 className="text-4xl font-bold">The Real Reason You're Here</h2>
@@ -164,8 +165,7 @@ export default function Home() {
         <motion.div
           className="max-w-6xl mx-auto text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -200,7 +200,6 @@ export default function Home() {
           className="text-center mt-24 bg-white/5 border border-white/10 p-10 rounded-2xl max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
           <h3 className="text-3xl font-bold text-gold mb-4">Limited Time Offer</h3>
@@ -213,10 +212,9 @@ export default function Home() {
             100% satisfaction guarantee — Pay only when you're happy with the first preview.
           </p>
 
+          {/* External link stays as <a> */}
           <a
             href="https://wa.me/"
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-block bg-gold text-midnight font-bold py-3 px-10 rounded-full shadow-md hover:shadow-lg transition duration-300"
           >
             Get Free Website Audit

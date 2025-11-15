@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Typewriter } from "react-simple-typewriter";
+import Link from "next/link";
 
 export default function Home() {
   const features = [
@@ -56,12 +57,10 @@ export default function Home() {
 
   return (
     <>
-      {/* Navbar */}
       <Navbar />
 
       {/* Hero Section */}
       <section className="relative bg-midnight text-text min-h-[70vh] flex flex-col justify-center items-center text-center px-6 overflow-hidden">
-        {/* Floating shapes */}
         <motion.div
           className="absolute w-72 h-72 bg-gold/20 rounded-full top-10 left-10 filter blur-3xl"
           animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
@@ -73,7 +72,6 @@ export default function Home() {
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* Main Hero Content */}
         <motion.h1
           className="text-5xl md:text-6xl font-extrabold mb-6 relative z-10"
           initial={{ opacity: 0, y: 40 }}
@@ -83,7 +81,6 @@ export default function Home() {
           Takouri Co.
         </motion.h1>
 
-        {/* Subline with StoryBrand Clarity */}
         <motion.div
           className="text-secondary max-w-2xl mb-8 text-lg md:text-xl relative z-10"
           initial={{ opacity: 0, y: 20 }}
@@ -101,16 +98,42 @@ export default function Home() {
           />
         </motion.div>
 
-        {/* CTA */}
-        <motion.a
+        <Link
           href="/services"
-          whileHover={{ scale: 1.05 }}
           className="relative z-10 inline-block bg-gold text-midnight font-semibold py-3 px-8 rounded-full shadow-md hover:shadow-lg transition duration-300"
         >
           Start Your Transformation
-        </motion.a>
+        </Link>
 
         <div className="absolute bottom-0 w-full h-12 bg-gradient-to-b from-transparent to-midnight z-0" />
+      </section>
+
+      {/* Client Pain Statements Section */}
+      <section className="bg-midnight text-text py-20 px-6 border-t border-white/10">
+        <motion.div
+          className="max-w-4xl mx-auto text-center space-y-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+        >
+          <h2 className="text-4xl font-bold">The Real Reason You're Here</h2>
+          <p className="text-secondary text-lg md:text-xl">
+            Most businesses lose customers every single day — not because they
+            don’t have a great product, but because their digital presence fails
+            to earn trust, communicate clearly, or convert attention into action.
+          </p>
+          <ul className="text-secondary text-lg space-y-3">
+            <li>— Your website looks outdated or unprofessional.</li>
+            <li>— People visit, but almost no one contacts or buys.</li>
+            <li>— You blend in instead of standing apart.</li>
+            <li>— You struggle to explain what makes you better.</li>
+          </ul>
+          <p className="text-gold text-xl font-semibold">
+            It’s not your business that’s failing — it’s your digital strategy.
+            We fix that.
+          </p>
+        </motion.div>
       </section>
 
       {/* Features Section */}
@@ -134,18 +157,6 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
-
-        {/* Floating accents */}
-        <motion.div
-          className="absolute w-40 h-40 bg-gold/10 rounded-full top-1/4 left-0 filter blur-3xl"
-          animate={{ x: [0, 30, 0], y: [0, 20, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute w-32 h-32 bg-white/10 rounded-full bottom-0 right-10 filter blur-2xl"
-          animate={{ x: [0, -25, 0], y: [0, -15, 0] }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        />
       </section>
 
       {/* Services Section */}
@@ -153,15 +164,17 @@ export default function Home() {
         <motion.div
           className="max-w-6xl mx-auto text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 1 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Transform Vision Into Legacy
           </h2>
           <p className="text-secondary max-w-2xl mx-auto text-lg md:text-xl">
-            We help ambitious brands clarify their message, refine their presence,
-            and lead with purpose. You bring the vision — we bring the strategy.
+            We help ambitious brands clarify their message, refine their
+            presence, and lead with purpose. You bring the vision — we bring the
+            strategy.
           </p>
         </motion.div>
 
@@ -182,18 +195,31 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Closing CTA */}
+        {/* Urgency / Guarantee CTA */}
         <motion.div
-          className="text-center mt-20"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-center mt-24 bg-white/5 border border-white/10 p-10 rounded-2xl max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
+          <h3 className="text-3xl font-bold text-gold mb-4">Limited Time Offer</h3>
+          <p className="text-secondary text-lg mb-6">
+            We accept only <span className="text-gold font-semibold">3 new clients per month</span> to maintain
+            world-class quality. <br />
+            <span className="text-white font-bold">2 Spots Remaining This Month</span>
+          </p>
+          <p className="text-lg text-white font-semibold mb-8">
+            100% satisfaction guarantee — Pay only when you're happy with the first preview.
+          </p>
+
           <a
-            href="/services"
-            className="inline-block bg-gold text-midnight font-semibold py-3 px-10 rounded-full shadow-md hover:shadow-lg transition duration-300"
+            href="https://wa.me/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-gold text-midnight font-bold py-3 px-10 rounded-full shadow-md hover:shadow-lg transition duration-300"
           >
-            Explore Our Services
+            Get Free Website Audit
           </a>
         </motion.div>
       </section>

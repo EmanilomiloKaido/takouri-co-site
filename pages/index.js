@@ -99,13 +99,14 @@ export default function Home() {
           />
         </motion.div>
 
-        {/* Internal link using Next.js Link */}
-        <Link
-          href="/services"
-          className="relative z-10 inline-block bg-gold text-midnight font-semibold py-3 px-8 rounded-full shadow-md hover:shadow-lg transition duration-300"
-        >
-          Start Your Transformation
-        </Link>
+        {/* Fixed Button: Internal Link */}
+        <motion.div whileHover={{ scale: 1.05 }}>
+          <Link href="/services" legacyBehavior>
+            <a className="relative z-10 inline-block bg-gold text-midnight font-semibold py-3 px-8 rounded-full shadow-md hover:shadow-lg transition duration-300">
+              Start Your Transformation
+            </a>
+          </Link>
+        </motion.div>
 
         <div className="absolute bottom-0 w-full h-12 bg-gradient-to-b from-transparent to-midnight z-0" />
       </section>
@@ -195,7 +196,7 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Urgency / Guarantee CTA */}
+        {/* CTA Section */}
         <motion.div
           className="text-center mt-24 bg-white/5 border border-white/10 p-10 rounded-2xl max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
@@ -212,13 +213,13 @@ export default function Home() {
             100% satisfaction guarantee — Pay only when you're happy with the first preview.
           </p>
 
-          {/* External link stays as <a> */}
-          <a
-            href="https://wa.me/"
-            className="inline-block bg-gold text-midnight font-bold py-3 px-10 rounded-full shadow-md hover:shadow-lg transition duration-300"
-          >
-            Get Free Website Audit
-          </a>
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <Link href="https://wa.me/" legacyBehavior>
+              <a className="inline-block bg-gold text-midnight font-bold py-3 px-10 rounded-full shadow-md hover:shadow-lg transition duration-300">
+                Get Free Website Audit
+              </a>
+            </Link>
+          </motion.div>
         </motion.div>
       </section>
 
